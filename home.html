@@ -269,16 +269,8 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        #menu-toggle {
-            display: block;
-            position: absolute;
-            right: 10px;
-            /* réduit la distance du bord */
-            top: 15px;
-            cursor: pointer;
-            z-index: 1100;
-            padding: 0.2rem 0.5rem;
-        }
+
+
 
 
         @media (max-width: 768px) {
@@ -295,10 +287,29 @@
                 left: 0;
                 width: 100%;
                 text-align: center;
-                padding: 1rem 0;
+                padding: 0.5rem 0;
+                /* Réduit la hauteur du bloc */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
                 z-index: 999;
             }
 
+            .nav-links a {
+                padding: 1rem 2rem;
+                /* Plus petit */
+                font-size: 0.9rem;
+            }
+
+
+            #menu-toggle {
+                display: block;
+                position: absolute;
+                right: 40px;
+                /* réduit la distance du bord */
+                top: 15px;
+                cursor: pointer;
+                z-index: 1100;
+                padding: 0.2rem 0.5rem;
+            }
 
             .nav-links.show {
                 display: flex;
@@ -354,7 +365,7 @@
 
             section {
                 margin: 1rem auto;
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             h2 {
@@ -399,7 +410,7 @@
         <div class="nav-content">
             <img src="nav2.png" alt="Logo Échothérapie">
             <button id="menu-toggle" class="burger">☰</button>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#concept">Le concept</a>
                 <a href="#pourqui">Pour qui ?</a>
                 <a href="#fonctionnement">Fonctionnement</a>
@@ -410,20 +421,16 @@
     </nav>
 
     <section id="concept"
-        style="position: relative; width: 100%; height: 100vh; background-color: #1e2a44; overflow: hidden;">
+        style="width: 100%; background-color: #1e2a44; display: flex; justify-content: center; align-items: flex-end; height: 80vh; overflow: hidden;">
+        <img src="concept.png" alt="Échothérapie en action" style="max-height: 75%; width: auto; margin-bottom: 2rem;">
+    </section>
 
 
-        <!-- Image reculée -->
-        <img src="concept.png" alt="Échothérapie en action"
-            style="position: absolute; top: 34%; left: 50%; height: 85%; width: auto; max-width: none; transform: translate(-50%, -50%) scale(0.65); z-index: 2; object-fit: cover;">
+    <section id="a-propos" class="concept">
+        <div class="texte">
+            <h2>Le concept</h2>
 
-        <!-- Bloc texte -->
-        <!-- Bloc texte -->
-        <!-- Bloc texte -->
-        <div class="text-block"
-            style="position: absolute; bottom: 33px; left: 5vw; background-color: #f2e4dd; padding: 2rem 2.5rem; border-radius: 16px; width: 100%; max-width: 600px; z-index: 3; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2 style="color: #1e2a44; margin-top: 0; font-size: 1.4rem;">Le concept</h2>
-            <p style="font-size: 1rem; color: #2e3a3e;">
+            <p>
                 Échothérapie est un projet d'ateliers d'écoute et d'expression destinés aux personnes en souffrance
                 psychique ou sociale.<br><br>
                 Grâce à ChatGPT, les participants peuvent dialoguer en toute sécurité, explorer leurs pensées, déposer
@@ -556,15 +563,23 @@
     </footer>
 
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            // Quand on clique sur un lien, on ferme le menu
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                });
+            });
         });
     </script>
-
-
 </body>
 
 </html>
