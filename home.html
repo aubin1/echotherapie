@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Échothérapie</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #2e3a3e;
+            background-color: #1e2a44;
+            /* Bleu foncé en fond partout */
+        }
+
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+        }
+
+        nav .nav-content {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            height: 80px;
+            width: auto;
+            max-width: 350px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            margin-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            padding: 5rem 1rem 3rem;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        header img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: #7f8c8d;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.85);
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 800px;
+        }
+
+        h2 {
+            color: #00695c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta a {
+            text-decoration: none;
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .cta a:hover {
+            background-color: #34495e;
+        }
+
+        .grid-features {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .grid-features h2 {
+            font-size: 2rem;
+            color: #1e2a44;
+            margin-bottom: 1rem;
+        }
+
+        .grid-features .intro {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .feature-box {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .icon-circle {
+            background-color: #f2e4dd;
+            padding: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+        }
+
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+
+        .feature-box h3 {
+            margin: 0 0 0.3rem;
+            color: #1e2a44;
+            font-size: 1.1rem;
+        }
+
+        .feature-box p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .fonctionnement-section {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 4rem 2rem;
+        }
+
+        .fonctionnement-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            gap: 2rem;
+        }
+
+        .fonctionnement-content .texte {
+            flex: 1 1 500px;
+            color: #2e3a3e;
+        }
+
+        .fonctionnement-content .texte h2 {
+            color: #1e2a44;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .fonctionnement-content .texte p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .fonctionnement-content .image {
+            flex: 1 1 500px;
+            text-align: center;
+        }
+
+        .fonctionnement-content .image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .a-propos-section {
+            background-color: #f2e4dd;
+            padding: 4rem 2rem;
+            color: #2e3a3e;
+        }
+
+        .a-propos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .a-propos-section h2 {
+            font-size: 2rem;
+            color: #1e2a44;
+            margin-bottom: 1.5rem;
+        }
+
+        .texte {
+            flex: 1 1 600px;
+        }
+
+        .texte p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .photo {
+            flex: 1 1 300px;
+            text-align: right;
+        }
+
+        .photo img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+
+            nav .nav-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            nav img {
+                height: 60px;
+                max-width: 250px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+
+            header {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .grid-features {
+                padding: 2rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .fonctionnement-content,
+            .a-propos-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .fonctionnement-content .image,
+            .photo {
+                text-align: center;
+            }
+
+            .fonctionnement-content .texte,
+            .a-propos-container .texte {
+                flex: 1 1 100%;
+            }
+
+            .fonctionnement-content .image img,
+            .photo img {
+                max-width: 80%;
+            }
+
+            section {
+                margin: 1rem auto;
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta a {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            footer {
+                font-size: 0.85rem;
+                padding: 1.5rem;
+            }
+
+            #concept .text-block {
+                position: static !important;
+                margin: 2rem auto;
+                background-color: #f2e4dd;
+                padding: 1.5rem;
+                border-radius: 12px;
+                max-width: 90%;
+                z-index: 3;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #concept img {
+                object-fit: cover;
+                width: 100%;
+                height: auto;
+                position: static !important;
+                transform: none !important;
+            }
+
+            #menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                cursor: pointer;
+                z-index: 1100;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #f0f0f0;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                padding-bottom: 0;
+            }
+
+            nav .nav-content {
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <img src="nav2.png" alt="Logo Échothérapie">
+            <div>
+                <a href="#concept">Le concept</a>
+                <a href="#a-propos">Qui suis-je ?</a>
+                <a href="#pourqui">Pour qui ?</a>
+                <a href="#fonctionnement">Comment ça fonctionne ?</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="concept"
+        style="position: relative; width: 100%; height: 100vh; background-color: #1e2a44; overflow: hidden;">
+
+
+        <!-- Image reculée -->
+        <img src="concept.png" alt="Échothérapie en action"
+            style="position: absolute; top: 34%; left: 50%; height: 85%; width: auto; max-width: none; transform: translate(-50%, -50%) scale(0.65); z-index: 2; object-fit: cover;">
+
+        <!-- Bloc texte -->
+        <!-- Bloc texte -->
+        <!-- Bloc texte -->
+        <div class="text-block"
+            style="position: absolute; bottom: 33px; left: 5vw; background-color: #f2e4dd; padding: 2rem 2.5rem; border-radius: 16px; width: 100%; max-width: 600px; z-index: 3; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h2 style="color: #1e2a44; margin-top: 0; font-size: 1.4rem;">Le concept</h2>
+            <p style="font-size: 1rem; color: #2e3a3e;">
+                Échothérapie est un projet d'ateliers d'écoute et d'expression destinés aux personnes en souffrance
+                psychique ou sociale.<br><br>
+                Grâce à ChatGPT, les participants peuvent dialoguer en toute sécurité, explorer leurs pensées, déposer
+                leurs douleurs et retrouver leur voix.
+            </p>
+            <div style="margin-top: 1.2rem;">
+                <a href="#fonctionnement"
+                    style="display: inline-block; background-color: #1e2a44; color: white; padding: 0.6rem 1.4rem; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.95rem;">
+                    En savoir plus
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="a-propos" class="a-propos-section">
+        <div class="a-propos-container">
+            <div class="texte">
+                <h2>Qui suis-je ?</h2>
+                <p>
+                    Je m'appelle <strong>Aubin</strong>, et si j’ai imaginé Échothérapie, ce n’est pas par hasard.
+                    C’est le fruit d’un parcours personnel profond, fait d’épreuves mentales, de reconstruction, et
+                    de rencontres essentielles.
+                    Je sais ce que c’est que d’avoir besoin d’un espace où parler ne fait pas peur, où l’on peut
+                    déposer ses pensées sans crainte d’être jugé.
+                </p>
+                <p>
+                    J’ai appris, au fil du temps, à écouter. À ressentir. À comprendre l’autre même dans ses
+                    silences.
+                    J’ai aussi appris à apprivoiser les outils technologiques, et j’ai compris que l’IA, bien
+                    utilisée, pouvait devenir une voix douce, un miroir, un soutien.
+                </p>
+                <p>
+                    Échothérapie, c’est cette alliance entre l’humain et l’outil.
+                    Entre ce que j’ai vécu, et ce que je souhaite offrir.
+                    Mon rôle ? Créer un cadre bienveillant, tendre un pont entre vous et une écoute nouvelle.
+                    Pour que plus personne ne reste seul avec sa douleur.
+                </p>
+            </div>
+            <div class="photo">
+                <img src="aubin.png" alt="Photo de moi" />
+            </div>
+        </div>
+    </section>
+    <section id="pourqui" class="grid-features">
+        <h2>Pour qui ?</h2>
+        <p class="intro">Échothérapie s’adresse à celles et ceux qui ont besoin d’écoute, d’espace, et d’une présence
+            bienveillante.</p>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon1.png" alt="Icône 1"></div>
+                <div>
+                    <h3>Centres psychiatriques</h3>
+                    <p>Espaces d'accompagnement pour les personnes en grande souffrance mentale.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon2.png" alt="Icône 2"></div>
+                <div>
+                    <h3>Hôpitaux de jour</h3>
+                    <p>Patients suivis en journée pouvant bénéficier d’un soutien régulier.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon3.png" alt="Icône 3"></div>
+                <div>
+                    <h3>Foyers de jeunes ou d’adultes</h3>
+                    <p>Structures d’accueil ayant besoin d’outils complémentaires d’expression.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon4.png" alt="Icône 4"></div>
+                <div>
+                    <h3>EHPAD, maisons de retraite</h3>
+                    <p>Pour briser l’isolement, raviver les souvenirs, ouvrir un lien chaleureux.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon5.png" alt="Icône 5"></div>
+                <div>
+                    <h3>Associations d’aide et d’insertion</h3>
+                    <p>Une ressource simple à déployer, pour toutes les causes humaines.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-circle"><img src="icon6.png" alt="Icône 6"></div>
+                <div>
+                    <h3>Personnes isolées ou vulnérables</h3>
+                    <p>Celles et ceux qui n’ont personne à qui parler, mais encore tant à dire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="fonctionnement" class="fonctionnement-section">
+        <div class="fonctionnement-content">
+            <div class="texte">
+                <h2>Comment ça fonctionne ?</h2>
+                <p>
+                    Les ateliers durent 1h à 2h, en petit groupe. Un intervenant présente ChatGPT et le cadre
+                    d'écoute.<br><br>
+                    Les participants interagissent librement avec l'IA, sur tablette ou PC, à leur rythme. Ensuite, un
+                    temps de
+                    retour collectif est proposé pour ceux qui le souhaitent.<br><br>
+                    Chaque participant repart avec la possibilité de reparler librement avec son propre compte ChatGPT
+                    (gratuit)
+                    pour continuer le lien.
+                </p>
+            </div>
+            <div class="image">
+                <img src="fonctionnement.png" alt="Illustration des ateliers Échothérapie">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Pour toute demande d'information ou pour proposer un atelier, merci d'écrire à : <a
+                href="mailto:contact.echotherapie@gmail.com">contact.echotherapie@gmail.com</a></p>
+    </section>
+
+    <footer>
+        &copy; 2025 Échothérapie – Porté par Aubin Lereclus
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+      
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('show');
+        });
+      </script>
+      
+</body>
+
+</html>
